@@ -1,0 +1,19 @@
+{
+    "name": "Supyrb.Signals.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:16f55dfd49f3b694bab70fdad220587f",
+        "GUID:a93bee54bb381744cbdd02ee23fe7a67"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
