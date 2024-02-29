@@ -9,6 +9,7 @@ using UnityEngine;
 public class WheelController : MonoBehaviour
 {
     public GameConfig gameConfig;
+    public WhellConfig wheelConfig;
 
     private WheelView _wheel;
     private RotateButtonView _rotateButton;
@@ -73,7 +74,7 @@ public class WheelController : MonoBehaviour
 
     private void OnRotateButtonClick()
     {
-        if (_currentTime >= gameConfig.timeToStart)
+        if (_currentTime >= wheelConfig.timeToStart)
         {
             _currentTime = 0;
             _rotateButton.SetSprite(gameConfig.inactiveButton);
@@ -123,7 +124,7 @@ public class WheelController : MonoBehaviour
 
         
         var randomValues = GenerateUniqueRandomNumbers(
-            _sectionModels.Count, gameConfig.minRewardValue, gameConfig.maxRewardValue, gameConfig.rewardMultiplicity);
+            _sectionModels.Count, wheelConfig.minRewardValue, wheelConfig.maxRewardValue, wheelConfig.rewardMultiplicity);
         
         for (int i = 0; i < randomValues.Count; i++)
         {
@@ -135,10 +136,10 @@ public class WheelController : MonoBehaviour
 
     private IEnumerator Timer()
     {
-        _rotateButton.SetText((gameConfig.timeToStart - _currentTime).ToString());
+        _rotateButton.SetText((wheelConfig.timeToStart - _currentTime).ToString());
         yield return new WaitForSeconds(1f);
         _currentTime += 1f;
-        if (_currentTime >= gameConfig.timeToStart)
+        if (_currentTime >= wheelConfig.timeToStart)
         {
             FortuneWhellReady();
         }
