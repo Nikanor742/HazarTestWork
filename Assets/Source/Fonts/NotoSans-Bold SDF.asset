@@ -198,84 +198,8 @@ MonoBehaviour:
     m_StrikethroughOffset: 0.4
     m_StrikethroughThickness: 0.05
     m_TabWidth: 0
-  m_GlyphTable:
-  - m_Index: 1
-    m_Metrics:
-      m_Width: 0
-      m_Height: 0
-      m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 0
-      m_HorizontalAdvance: 0
-    m_GlyphRect:
-      m_X: 0
-      m_Y: 0
-      m_Width: 0
-      m_Height: 0
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-  - m_Index: 2
-    m_Metrics:
-      m_Width: 0
-      m_Height: 0
-      m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 0
-      m_HorizontalAdvance: 0.265625
-    m_GlyphRect:
-      m_X: 0
-      m_Y: 0
-      m_Width: 0
-      m_Height: 0
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-  - m_Index: 3
-    m_Metrics:
-      m_Width: 0
-      m_Height: 0
-      m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 0
-      m_HorizontalAdvance: 0.265625
-    m_GlyphRect:
-      m_X: 0
-      m_Y: 0
-      m_Width: 0
-      m_Height: 0
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-  - m_Index: 98
-    m_Metrics:
-      m_Width: 0
-      m_Height: 0
-      m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 0
-      m_HorizontalAdvance: 0.265625
-    m_GlyphRect:
-      m_X: 0
-      m_Y: 0
-      m_Width: 0
-      m_Height: 0
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-  m_CharacterTable:
-  - m_ElementType: 1
-    m_Unicode: 0
-    m_GlyphIndex: 1
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 13
-    m_GlyphIndex: 2
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 32
-    m_GlyphIndex: 3
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 160
-    m_GlyphIndex: 98
-    m_Scale: 1
+  m_GlyphTable: []
+  m_CharacterTable: []
   m_AtlasTextures:
   - {fileID: -2354186827494986312}
   m_AtlasTextureIndex: 0
@@ -313,7 +237,7 @@ MonoBehaviour:
   m_AtlasWidth: 8
   m_AtlasHeight: 8
   m_AtlasPadding: 5
-  m_AtlasRenderMode: 4165
+  m_AtlasRenderMode: 4134
   m_glyphInfoList: []
   m_KerningTable:
     kerningPairs: []
@@ -330,13 +254,13 @@ MonoBehaviour:
     packingMode: 0
     atlasWidth: 8
     atlasHeight: 8
-    characterSetSelectionMode: 6
-    characterSequence: 00,0D,20-7E,A0-377,37A-37F,384-38A,38C,38E-3A1,3A3-3E1,3F0-4FF
+    characterSetSelectionMode: 0
+    characterSequence: 32 - 126, 160, 8203, 8230, 9633
     referencedFontAssetGUID: 7d69e7394b113e742b08156ed30af113
     referencedTextAssetGUID: 
     fontStyle: 0
     fontStyleModifier: 0
-    renderMode: 4165
+    renderMode: 4134
     includeFontFeatures: 0
   m_FontWeightTable:
   - regularTypeface: {fileID: 0}
