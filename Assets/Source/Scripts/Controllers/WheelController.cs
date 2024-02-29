@@ -5,24 +5,24 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 public class WheelController : MonoBehaviour
 {
-    public GameConfig gameConfig;
-    public WhellConfig wheelConfig;
-
-    private WheelView _wheel;
-    private RotateButtonView _rotateButton;
-    private SectionView[] _sections;
-
-    private float _currentTime;
+    [Inject] private GameConfig  _gameConfig;
+    [Inject] private WhellConfig _wheelConfig;
+    [Inject] private WheelView   _wheel;
 
     private List<SectionModel> _sectionModels;
-    private RewardModel _rewardModel;
+    private SectionView[]      _sections;
 
-    private int _currentRewardIndex;
+    private RotateButtonView _rotateButton;
+    private RewardModel      _rewardModel;
 
-    private Signal<RewardModel, SectionView> _getRewardSignal;
+    private float _currentTime;
+    private int   _currentRewardIndex;
+
+    private Signal<RewardModel,SectionView> _getRewardSignal;
 
 
     private void Start()
@@ -41,10 +41,14 @@ public class WheelController : MonoBehaviour
     private async void StartGame(int delay)
     {
         await UniTask.Delay(delay);
-        _rotateButton.SetTextColor(gameConfig.timerTextColor);
+        _rotateButton.SetTextColor(_gameConfig.timerTextColor);
+        _rotateButton.button.interactable = false;
+
         GenerateRandomWheelData();
+
         _wheel.SetRewardImageState(true);
         _wheel.SetRewardTextState(false);
+
         StartCoroutine(Timer());
     }
 
@@ -59,8 +63,9 @@ public class WheelController : MonoBehaviour
 
     private void FortuneWhellReady()
     {
-        _rotateButton.SetTextColor(gameConfig.readyTextColor);
-        _rotateButton.SetSprite(gameConfig.activeButton);
+        _rotateButton.SetTextColor(_gameConfig.readyTextColor);
+        _rotateButton.SetSprite(_gameConfig.activeButton);
+        _rotateButton.button.interactable = true;
         _rotateButton.SetText("Испытать удачу");
     }
 
@@ -69,16 +74,19 @@ public class WheelController : MonoBehaviour
         _wheel.SetRewardImageState(false);
         _wheel.SetRewardText(0);
         _getRewardSignal?.Dispatch(_rewardModel, _sections[_currentRewardIndex]);
-        StartGame(5000);
+        StartGame(4000);
     }
 
     private void OnRotateButtonClick()
     {
-        if (_currentTime >= wheelConfig.timeToStart)
+        if (_currentTime >= _wheelConfig.timeToStart)
         {
             _currentTime = 0;
-            _rotateButton.SetSprite(gameConfig.inactiveButton);
+            _rotateButton.SetSprite(_gameConfig.inactiveButton);
+            _rotateButton.button.interactable = false;
+
             var randomIndex = UnityEngine.Random.Range(0, _sectionModels.Count);
+
             _currentRewardIndex = randomIndex;
             _rewardModel.count = _sectionModels[_currentRewardIndex].value;
             Debug.Log("Result:" + _sectionModels[randomIndex].value);
@@ -119,12 +127,12 @@ public class WheelController : MonoBehaviour
             randomReward = values[UnityEngine.Random.Range(0, values.Length)];
         }
         _rewardModel.rewardType = randomReward;
-        _wheel.SetRewardImage(gameConfig.rewardConfig.
+        _wheel.SetRewardImage(_gameConfig.rewardConfig.
             Where(r => r.rewardType == _rewardModel.rewardType).First().sprite);
 
         
         var randomValues = GenerateUniqueRandomNumbers(
-            _sectionModels.Count, wheelConfig.minRewardValue, wheelConfig.maxRewardValue, wheelConfig.rewardMultiplicity);
+            _sectionModels.Count, _wheelConfig.minRewardValue, _wheelConfig.maxRewardValue, _wheelConfig.rewardMultiplicity);
         
         for (int i = 0; i < randomValues.Count; i++)
         {
@@ -136,10 +144,10 @@ public class WheelController : MonoBehaviour
 
     private IEnumerator Timer()
     {
-        _rotateButton.SetText((wheelConfig.timeToStart - _currentTime).ToString());
+        _rotateButton.SetText((_wheelConfig.timeToStart - _currentTime).ToString());
         yield return new WaitForSeconds(1f);
         _currentTime += 1f;
-        if (_currentTime >= wheelConfig.timeToStart)
+        if (_currentTime >= _wheelConfig.timeToStart)
         {
             FortuneWhellReady();
         }

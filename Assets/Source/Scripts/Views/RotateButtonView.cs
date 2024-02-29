@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class RotateButtonView : MonoBehaviour
 {
     [HideInInspector] public Button button;
+
     private TextMeshProUGUI _buttonText;
 
     private void Awake()

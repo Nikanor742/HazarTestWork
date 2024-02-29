@@ -1,5 +1,5 @@
 public class RewardModel
 {
     public ERewardType rewardType;
-    public int count;
+    public int         count;
 }

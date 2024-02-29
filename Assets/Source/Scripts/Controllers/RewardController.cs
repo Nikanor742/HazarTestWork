@@ -2,15 +2,16 @@ using DG.Tweening;
 using Supyrb;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 public class RewardController : MonoBehaviour
 {
-    private WheelView _wheel;
-    private Signal<RewardModel, SectionView> _getRewardSignal;
-
-    public GameConfig gameConfig;
+    [Inject] private GameConfig _gameConfig;
+    [Inject] private WheelView _wheel;
 
     private int _reward;
+
+    private Signal<RewardModel, SectionView> _getRewardSignal;
 
     private void Start()
     {
@@ -46,7 +47,7 @@ public class RewardController : MonoBehaviour
     private void GetReward(RewardModel rewardModel, SectionView section)
     {
         _reward = 0;
-        var rewardData = gameConfig.rewardConfig.Where(r => r.rewardType == rewardModel.rewardType).First();
+        var rewardData = _gameConfig.rewardConfig.Where(r => r.rewardType == rewardModel.rewardType).First();
 
         if (rewardModel.count <= 20)
         {

@@ -1,17 +1,16 @@
 using DG.Tweening;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class WheelView : MonoBehaviour
 {
-    [SerializeField] private Transform _wheel;
-    [SerializeField] private Transform _arrow;
-    [SerializeField] private Image _rewardImage;
     [SerializeField] private TextMeshProUGUI _rewardText;
+    [SerializeField] private Transform       _wheel;
+    [SerializeField] private Transform       _arrow;
+    [SerializeField] private Image           _rewardImage;
+    
 
     public event Action OnWheelStopped;
 
